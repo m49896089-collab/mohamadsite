@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طراحی سایت محمد | نمونه‌کارها</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--purple:#8b5cf6;--deep:#4c1d95;--text:#31204c}
+html{scroll-behavior:smooth}
+body{font-family:Vazirmatn,sans-serif;color:var(--text);background:linear-gradient(135deg,#f8f5ff,#eee6ff);overflow-x:hidden;transition:background .7s}
+.hero{min-height:520px;display:flex;align-items:center;justify-content:center;text-align:center;padding:65px 20px;position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(125deg,rgba(24,8,50,.9),rgba(103,45,175,.78),rgba(151,90,233,.66)),url("img/head.png") center/cover}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(85px);z-index:-1;animation:heroGlow 8s ease-in-out infinite alternate}
+.hero:before{width:370px;height:370px;background:#d68aff;top:-150px;right:-90px}
+.hero:after{width:320px;height:320px;background:#5e35d5;bottom:-130px;left:-90px;animation-delay:-3s}
+.hero-content{max-width:850px;animation:heroEnter 1s cubic-bezier(.2,.8,.2,1) both}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;padding:10px 20px;border:1px solid #ffffff50;border-radius:50px;background:#ffffff16;backdrop-filter:blur(12px);color:#f2ddff;font-size:14px;margin-bottom:24px;animation:badgeFloat 4s ease-in-out infinite}
+.hero h1{font-size:clamp(34px,6vw,68px);font-weight:900;color:#fff;margin-bottom:18px;text-shadow:0 5px 28px #0004}
+.hero h1 span{display:inline-block;color:#e9c5ff;animation:nameGlow 3s ease-in-out infinite}
+.hero p{color:#f4eaff;font-size:clamp(15px,2vw,19px);line-height:2.2;max-width:660px;margin:auto}
+.hero-buttons{margin-top:32px;display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+.hero-btn{text-decoration:none;padding:14px 28px;border-radius:15px;font-weight:800;transition:.35s;position:relative;overflow:hidden}
+.hero-btn:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent,#ffffff90,transparent);transform:translateX(-130%);transition:.6s}
+.hero-btn:hover:before{transform:translateX(130%)}
+.hero-btn.primary{background:#fff;color:#6d28d9;box-shadow:0 12px 30px #16072e35}
+.hero-btn.primary:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 18px 38px #16072e45}
+.hero-btn.secondary{color:#fff;border:1px solid #ffffff70;background:#ffffff12;backdrop-filter:blur(8px)}
+.hero-btn.secondary:hover{background:#ffffff28;transform:translateY(-4px)}
+.intro{text-align:center;padding:70px 20px 36px}
+.small-title{color:#9661d6;font-weight:800;font-size:14px;letter-spacing:2px;margin-bottom:13px}
+.intro h2{font-size:clamp(25px,4vw,38px);font-weight:900;color:#4c1d95;margin-bottom:14px}
+.intro p{color:#78628f;line-height:2.1}
+.gallery{width:92%;max-width:1250px;margin:25px auto 80px}
+.room{position:relative;isolation:isolate;padding:32px;margin-bottom:38px;border-radius:30px;overflow:hidden;background:var(--room-bg);border:2px solid var(--room-border);box-shadow:0 14px 38px var(--room-shadow);transition:transform .45s,box-shadow .45s;opacity:0;transform:translateY(35px) scale(.985)}
+.room.visible{opacity:1;transform:translateY(0) scale(1);animation:roomEntrance .75s cubic-bezier(.2,.8,.2,1) both}
+.room:hover{box-shadow:0 22px 52px var(--room-shadow);transform:translateY(-5px)}
+.room:before{content:"";position:absolute;width:260px;height:260px;top:-100px;left:-100px;border-radius:50%;background:var(--room-glow);filter:blur(75px);opacity:.7;pointer-events:none;z-index:-1;animation:roomAura 8s ease-in-out infinite alternate}
+.room:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.45}
+.room-heading{position:relative;z-index:2;display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.room-icon{width:58px;height:58px;border-radius:19px;display:grid;place-items:center;font-size:24px;color:var(--room-icon-color);background:var(--room-icon-bg);box-shadow:0 7px 20px var(--room-shadow);transition:transform .4s}
+.room:hover .room-icon{transform:rotate(-8deg) scale(1.08)}
+.room-heading h2{font-size:23px;font-weight:900;color:var(--room-title)}
+.room-heading p{color:var(--room-subtitle);font-size:13px;margin-top:5px}
+.samples{position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:23px}
+.sample{background:#ffffffd9;border:1px solid #ffffffd9;border-radius:23px;overflow:hidden;cursor:pointer;box-shadow:0 9px 23px #32145012;transition:transform .45s,box-shadow .45s;opacity:0;transform:translateY(25px)}
+.room.visible .sample{animation:cardEnter .65s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--card-index,0)*.12s)}
+.sample:hover{transform:translateY(-10px) scale(1.015);box-shadow:0 20px 42px #32145025}
+.sample-image{height:250px;position:relative;overflow:hidden;background:var(--room-icon-bg)}
+.sample-image img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .75s cubic-bezier(.2,.8,.2,1),filter .5s}
+.sample:hover .sample-image img{transform:scale(1.12);filter:saturate(1.12)}
+.image-overlay{position:absolute;inset:0;background:linear-gradient(to top,#18082c85,transparent 65%);opacity:0;transition:.4s}
+.sample:hover .image-overlay{opacity:1}
+.preview-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.5) rotate(-20deg);width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:#fffffff0;color:#7c3aed;font-size:21px;opacity:0;transition:.4s;box-shadow:0 0 0 0 #ffffff70}
+.sample:hover .preview-icon{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0);animation:previewPulse 1.6s infinite}
+.sample-info{padding:20px}
+.sample-info h3{font-size:17px;font-weight:900;margin-bottom:12px;color:#39234f}
+.color-tag{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:50px;background:var(--tag-bg);color:var(--tag-color);font-size:12px;font-weight:700;margin-bottom:15px}
+.color-tag i{font-size:10px}
+.open-btn{width:100%;padding:13px;border:0;border-radius:13px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-family:inherit;font-weight:800;cursor:pointer;transition:.35s;position:relative;overflow:hidden}
+.open-btn i{margin-left:7px}
+.open-btn:hover{filter:brightness(1.12);transform:translateY(-3px);box-shadow:0 10px 20px #6d28d940}
+.room-pink{--room-bg:linear-gradient(135deg,#ffe5f1,#fff6fb,#f9d7ed);--room-border:#f2b9d8;--room-shadow:#ce5ea533;--room-glow:#ff8bd2;--room-title:#a33470;--room-subtitle:#bd6695;--room-icon-bg:#ffd4eb;--room-icon-color:#b83280}
+.room-pink:after{background-image:radial-gradient(#ff80c5 1.5px,transparent 2px);background-size:28px 28px;animation:heartDots 18s linear infinite;mask-image:linear-gradient(90deg,#000,transparent 70%)}
+.room-pink .room-icon{animation:pinkBounce 3s ease-in-out infinite}
+.room-pink:before{animation:pinkGlow 5s ease-in-out infinite alternate}
+.room-red{--room-bg:linear-gradient(135deg,#ffe2e2,#fff6f4,#ffd5d8);--room-border:#f3aaaa;--room-shadow:#c33c4633;--room-glow:#ff7777;--room-title:#a52c3c;--room-subtitle:#bd6b74;--room-icon-bg:#ffd2d5;--room-icon-color:#b42335}
+.room-red:after{background:linear-gradient(115deg,transparent 20%,#ff45450c 45%,#ff454550 50%,#ff45450c 55%,transparent 80%);background-size:240% 100%;animation:redSweep 5s linear infinite}
+.room-red .room-icon{animation:redPulse 2.4s ease-in-out infinite}
+.room-black{--room-bg:linear-gradient(135deg,#e2e2e8,#fff,#d5d5df);--room-border:#b8b8c6;--room-shadow:#46465a30;--room-glow:#a5a5c4;--room-title:#333344;--room-subtitle:#68687a;--room-icon-bg:#d5d5e0;--room-icon-color:#343444}
+.room-black:after{background:repeating-linear-gradient(125deg,transparent 0 18px,#ffffff80 19px 20px,transparent 21px 42px);transform:translateX(-100%);animation:blackShine 7s ease-in-out infinite}
+.room-black .room-icon{animation:blackFlip 5s ease-in-out infinite}
+.room-ice{--room-bg:linear-gradient(135deg,#d9f4ff,#f3fcff,#c9eaff);--room-border:#a7ddf3;--room-shadow:#3c96c833;--room-glow:#78d7ff;--room-title:#237aab;--room-subtitle:#5c9dbb;--room-icon-bg:#c4edff;--room-icon-color:#1484bd}
+.room-ice:after{background-image:radial-gradient(#fff 1.8px,transparent 2.5px),radial-gradient(#b9edff 1.2px,transparent 2px);background-size:37px 37px,61px 61px;background-position:0 0,18px 20px;animation:snowFall 12s linear infinite}
+.room-ice .room-icon{animation:iceWiggle 4s ease-in-out infinite}
+.room-cream{--room-bg:linear-gradient(135deg,#f5e5d1,#fffaf2,#ead8c1);--room-border:#dec5a5;--room-shadow:#a5784633;--room-glow:#f0c58c;--room-title:#8b6338;--room-subtitle:#b18a61;--room-icon-bg:#e9d3b5;--room-icon-color:#896033}
+.room-cream:after{background:radial-gradient(ellipse at 20% 30%,#fff8e9a0,transparent 40%),radial-gradient(ellipse at 85% 70%,#d6ad7c40,transparent 35%);animation:creamDrift 9s ease-in-out infinite alternate}
+.room-cream .room-icon{animation:creamFloat 4s ease-in-out infinite}
+.room-white{--room-bg:linear-gradient(135deg,#fff,#f9f7ff,#eeeaff);--room-border:#ded4f7;--room-shadow:#8264be2e;--room-glow:#c7a9ff;--room-title:#7150a7;--room-subtitle:#9781bd;--room-icon-bg:#e8dcff;--room-icon-color:#7c3aed}
+.room-white:after{background:linear-gradient(115deg,transparent 30%,#ffffffb0 48%,transparent 65%);background-size:230% 100%;animation:whiteWave 6s ease-in-out infinite}
+.room-white .room-icon{animation:whiteSpark 3.2s ease-in-out infinite}
+.modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;background:#180a28cc;backdrop-filter:blur(13px)}
+.modal.active{display:flex}
+.modal-box{width:100%;max-width:950px;max-height:90vh;overflow-y:auto;background:#fff;border-radius:27px;padding:22px;box-shadow:0 30px 100px #0006;animation:modalShow .4s cubic-bezier(.2,.8,.2,1)}
+.modal-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+.modal-top h2{color:#6d28d9;font-size:20px}
+.close-btn{width:43px;height:43px;border:0;border-radius:50%;background:#f0e6ff;color:#6d28d9;font-size:22px;cursor:pointer;transition:.35s}
+.close-btn:hover{background:#6d28d9;color:#fff;transform:rotate(90deg)}
+.modal-image{width:100%;max-height:70vh;object-fit:contain;background:#f7f4ff;border-radius:16px}
+.modal-description{text-align:center;color:#70568e;padding:20px 10px;line-height:2}
+footer{text-align:center;padding:42px 20px;background:linear-gradient(135deg,#321252,#6d28d9,#4c1d95);color:#fff;position:relative;overflow:hidden}
+footer:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:#b57bff55;filter:blur(80px);top:-150px;right:-80px}
+.footer-icon{font-size:28px;color:#e9c5ff;margin-bottom:14px;animation:footerIcon 3s ease-in-out infinite}
+footer p{line-height:2.1;font-size:14px;position:relative}
+.social-links{display:flex;justify-content:center;gap:18px;margin:22px 0}
+.social{width:55px;height:55px;display:grid;place-items:center;border-radius:50%;color:#fff;font-size:25px;text-decoration:none;transition:.4s;box-shadow:0 8px 20px #0002}
+.social.telegram{background:linear-gradient(135deg,#29b6f6,#0077b5)}
+.social.instagram{background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)}
+.social:hover{transform:translateY(-7px) rotate(8deg) scale(1.12);box-shadow:0 14px 25px #0003}
+.social-label{font-size:12px;color:#eee3ff;margin-top:4px}
+@keyframes heroEnter{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroGlow{to{transform:translate(50px,30px) scale(1.2);opacity:.65}}
+@keyframes badgeFloat{50%{transform:translateY(-5px)}}
+@keyframes nameGlow{50%{text-shadow:0 0 22px #e9c5ff99}}
+@keyframes roomEntrance{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes cardEnter{to{opacity:1;transform:translateY(0)}}
+@keyframes roomAura{to{transform:translate(30px,35px) scale(1.25);opacity:.9}}
+@keyframes previewPulse{50%{box-shadow:0 0 0 12px #ffffff00}}
+@keyframes modalShow{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes heartDots{to{background-position:280px 280px}}
+@keyframes pinkBounce{50%{transform:translateY(-7px) rotate(7deg)}}
+@keyframes pinkGlow{to{transform:scale(1.4);opacity:.9}}
+@keyframes redSweep{to{background-position:240% 0}}
+@keyframes redPulse{50%{box-shadow:0 0 0 9px #ff5b321c,0 0 28px #ff3b0060;transform:scale(1.06)}}
+@keyframes blackShine{50%{transform:translateX(100%)}}
+@keyframes blackFlip{50%{transform:rotateY(180deg)}}
+@keyframes snowFall{to{background-position:0 370px,18px 630px}}
+@keyframes iceWiggle{50%{transform:translateY(-5px) rotate(-5deg);filter:drop-shadow(0 0 8px #67cfff)}}
+@keyframes creamDrift{to{transform:scale(1.08) translateX(-15px)}}
+@keyframes creamFloat{50%{transform:translateY(-6px) rotate(4deg)}}
+@keyframes whiteWave{50%{background-position:180% 0}}
+@keyframes whiteSpark{50%{box-shadow:0 0 22px #c7a9ff;transform:scale(1.06)}}
+@keyframes footerIcon{50%{transform:translateY(-5px) rotate(5deg)}}
+@media(max-width:650px){.hero{min-height:440px;padding:50px 18px}.hero h1{font-size:34px}.hero-buttons{flex-direction:column;align-items:center}.hero-btn{width:90%;max-width:310px}.intro{padding-top:48px}.gallery{width:94%}.room{padding:19px;border-radius:23px;margin-bottom:26px}.room-heading h2{font-size:19px}.room-icon{width:51px;height:51px;border-radius:16px}.samples{grid-template-columns:1fr}.sample-image{height:235px}.modal-box{padding:14px;border-radius:19px}.modal-top h2{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-content">
+<div class="hero-badge"><i class="fa-solid fa-code"></i> طراحی خلاقانه و مدرن</div>
+<h1>طراحی سایت <span>محمد</span></h1>
+<p>به گالری طراحی‌های من خوش اومدی! اینجا می‌تونی نمونه‌کارهای مختلف رو ببینی، وارد اتاقک هر طراحی بشی و دنیای رنگی هر سایت رو کشف کنی.</p>
+<div class="hero-buttons">
+<a href="#gallery" class="hero-btn primary"><i class="fa-solid fa-images"></i> مشاهده نمونه‌کارها</a>
+<a href="#footer" class="hero-btn secondary"><i class="fa-solid fa-envelope"></i> ارتباط با من</a>
+</div>
+</div>
+</header>
+<section class="intro">
+<div class="small-title"><i class="fa-solid fa-wand-magic-sparkles"></i> PORTFOLIO</div>
+<h2>گالری خلاقیت‌های من</h2>
+<p>هر سایت یک دنیای متفاوت داره؛ رنگ، سبک و طراحی مخصوص خودش ✨</p>
+</section>
+<main class="gallery" id="gallery">
+<section class="room room-pink">
+<div class="room-heading"><div class="room-icon"><i class="fa-solid fa-heart"></i></div><div><h2>اتاق صورتی و مشکی</h2><p>فروشگاه عروسک با دو سبک متفاوت</p></div></div>
+<div class="samples">
+<article class="sample" data-title="فروشگاه عروسک - تم صورتی" data-description="نمونه سایت فروشگاه عروسک با طراحی صورتی و فانتزی" data-image="img/nemone1.png" data-theme="#ffe5f1"><div class="sample-image"><img src="img/nemone1.png" alt="فروشگاه عروسک صورتی"><div class="image-overlay"></div><div class="preview-icon"><i class="fa-solid fa-eye"></i></div></div><div class="sample-info"><h3>فروشگاه عروسک</h3><span class="color-tag" style="--tag-bg:#ffe5f3;--tag-color:#b83280"><i class="fa-solid fa-circle"></i> صورتی</span><button class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهده نمونه</button></div></article>
+<article class="sample" data-title="فروشگاه عروسک - صورتی و مشکی" data-description="فروشگاه عروسک با طراحی ترکیبی صورتی و مشکی" data-image="img/nemone2.png" data-theme="#29212e"><div class="sample-image"><img src="img/nemone2.png" alt="فروشگاه عروسک صورتی مشکی"><div class="image-overlay"></div><div class="preview-icon"><i class="fa-solid fa-eye"></i></div></div><div class="sample-info"><h3>فروشگاه عروسک</h3><span class="color-tag" style="--tag-bg:#29212e;--tag-color:#fff"><i class="fa-solid fa-circle"></i> صورتی و مشکی</span><button class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهده نمونه</button></div></article>
+</div>
+</section>
+<section class="room room-red">
+<div class="room-heading"><div class="room-icon"><i class="fa-solid fa-car"></i></div><div><h2>اتاق قرمز و مشکی</h2><p>طراحی انگلیسی نمایش خودرو</p></div></div>
+<div class="samples"><article class="sample" data-title="سایت ماشین فروشی" data-description="نمونه سایت انگلیسی ماشین فروشی با تم قرمز و مشکی" data-image="img/nemone3.png" data-theme="#ffe2e2"><div class="sample-image"><img src="img/nemone3.png" alt="سایت ماشین"><div class="image-overlay"></div><div class="preview-icon"><i class="fa-solid fa-eye"></i></div></div><div class="sample-info"><h3>ماشین فروشی</h3><span class="color-tag" style="--tag-bg:#3a1118;--tag-color:white"><i class="fa-solid fa-circle"></i> قرمز و مشکی</span><button class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهده نمونه</button></div></article></div>
+</section>
+<section class="room room-black">
+<div class="room-heading"><div class="room-icon"><i class="fa-solid fa-shoe-prints"></i></div><div><h2>اتاق سیاه و سفید</h2><p>طراحی مینیمال فروشگاه کفش</p></div></div>
+<div class="samples"><article class="sample" data-title="فروشگاه کفش" data-description="نمونه سایت انگلیسی فروشگاه کفش با سبک مینیمال" data-image="img/nemone4.png" data-theme="#dedede"><div class="sample-image"><img src="img/nemone4.png" alt="سایت کفش"><div class="image-overlay"></div><div class="preview-icon"><i class="fa-solid fa-eye"></i></div></div><div class="sample-info"><h3>فروشگاه کفش</h3><span class="color-tag" style="--tag-bg:#dedede;--tag-color:#333"><i class="fa-solid fa-circle"></i> سیاه و سفید</span><button class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهده نمونه</button></div></article></div>
+</section>
+<section class="room room-ice">
+<div class="room-heading"><div class="room-icon"><i class="fa-solid fa-gamepad"></i></div><div><h2>اتاق آبی یخی</h2><p>فروشگاه تجهیزات گیمینگ</p></div></div>
+<div class="samples"><article class="sample" data-title="فروشگاه گیمینگ" data-description="نمونه سایت لوازم گیمینگ با تم سفید و آبی یخی" data-image="img/nemone 5.png" data-theme="#dff5ff"><div class="sample-image"><img src="img/nemone 5.png" alt="سایت گیمینگ"><div class="image-overlay"></div><div class="preview-icon"><i class="fa-solid fa-eye"></i></div></div><div class="sample-info"><h3>لوازم گیمینگ</h3><span class="color-tag" style="--tag-bg:#dff5ff;--tag-color:#317caa"><i class="fa-solid fa-circle"></i> سفید و آبی یخی</span><button class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهده نمونه</button></div></article></div>
+</section>
+<section class="room room-cream">
+<div class="room-heading"><div class="room-icon"><i class="fa-solid fa-paw"></i></div><div><h2>اتاق کرم</h2><p>فروشگاه محصولات حیوانات خانگی</p></div></div>
+<div class="samples"><article class="sample" data-title="فروشگاه لوازم پت" data-description="نمونه سایت معرفی و فروش لوازم حیوانات خانگی" data-image="img/nemone6.png" data-theme="#f1e4d1"><div class="sample-image"><img src="img/nemone6.png" alt="سایت پت"><div class="image-overlay"></div><div class="preview-icon"><i class="fa-solid fa-eye"></i></div></div><div class="sample-info"><h3>لوازم پت</h3><span class="color-tag" style="--tag-bg:#f1e4d1;--tag-color:#82613e"><i class="fa-solid fa-circle"></i> کرم</span><button class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهده نمونه</button></div></article></div>
+</section>
+<section class="room room-white">
+<div class="room-heading"><div class="room-icon"><i class="fa-solid fa-bag-shopping"></i></div><div><h2>اتاق سفید</h2><p>طراحی آنلاین شاپ مدرن</p></div></div>
+<div class="samples"><article class="sample" data-title="آنلاین شاپ" data-description="نمونه طراحی سایت آنلاین شاپ با تم سفید" data-image="img/nemone7.png" data-theme="#ffffff"><div class="sample-image"><img src="img/nemone7.png" alt="آنلاین شاپ"><div class="image-overlay"></div><div class="preview-icon"><i class="fa-solid fa-eye"></i></div></div><div class="sample-info"><h3>آنلاین شاپ</h3><span class="color-tag" style="--tag-bg:#fff;--tag-color:#777"><i class="fa-solid fa-circle"></i> سفید</span><button class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> مشاهده نمونه</button></div></article></div>
+</section>
+</main>
+<div class="modal" id="modal"><div class="modal-box"><div class="modal-top"><h2 id="modalTitle">عنوان نمونه</h2><button class="close-btn" id="closeModal"><i class="fa-solid fa-xmark"></i></button></div><img class="modal-image" id="modalImage" src="" alt=""><p class="modal-description" id="modalDescription"></p></div></div>
+<footer id="footer">
+<div class="footer-icon"><i class="fa-solid fa-code"></i></div>
+<p>برای سفارش طراحی سایت و ارتباط با من، از شبکه‌های اجتماعی استفاده کن</p>
+<div class="social-links">
+<a href="https://t.me/mamad61978" target="_blank" rel="noopener noreferrer" class="social telegram" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+<a href="https://instagram.com/mohamadphtnl" target="_blank" rel="noopener noreferrer" class="social instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+</div>
+<p class="social-label">تلگرام: @mamad61978</p>
+<p class="social-label">اینستاگرام: @mohamadphtnl</p>
+<p style="margin-top:18px">© تمامی حقوق محفوظ است</p>
+</footer>
+<script>
+const samples=document.querySelectorAll('.sample');
+const modal=document.getElementById('modal');
+const modalImage=document.getElementById('modalImage');
+const modalTitle=document.getElementById('modalTitle');
+const modalDescription=document.getElementById('modalDescription');
+const closeModal=document.getElementById('closeModal');
+const defaultBackground='linear-gradient(135deg, #f8f5ff, #eee6ff)';
+samples.forEach((sample,index)=>{
+ sample.style.setProperty('--card-index',index%3);
+ sample.addEventListener('click',()=>{
+  modalTitle.textContent=sample.dataset.title;
+  modalDescription.textContent=sample.dataset.description;
+  modalImage.src=sample.dataset.image;
+  modalImage.alt=sample.dataset.title;
+  document.body.style.background=`linear-gradient(135deg, ${sample.dataset.theme}, white, ${sample.dataset.theme})`;
+  modal.classList.add('active');
+  document.body.style.overflow='hidden';
+ });
+});
+function closeViewer(){modal.classList.remove('active');document.body.style.background=defaultBackground;modalImage.src='';document.body.style.overflow='';}
+closeModal.addEventListener('click',closeViewer);
+modal.addEventListener('click',event=>{if(event.target===modal)closeViewer();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('active'))closeViewer();});
+const roomObserver=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');roomObserver.unobserve(entry.target);}});
+},{threshold:.12});
+document.querySelectorAll('.room').forEach(room=>roomObserver.observe(room));
+</script>
+</body>
+</html>
